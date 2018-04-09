@@ -16,6 +16,7 @@ import android.widget.LinearLayout
  * 2. onLayout 方法中的重点是 child.layout()，身为viewGroup必须要手动去布置childView的位置 可以调用measureChildWithMargins的便携函数来帮助我们layout
  *
  *      a. 累加的方式就可以处理了
+ *      b. 因为是marginParams，所以需要支持这个参数，就需要考虑margin
  *
  * 3. onMeasure方法中的重点是 setMeasuredDimension来确定本身计算的宽和高。  可以调用view.resolveSizeAndState来做便携的命令
  *
@@ -26,6 +27,9 @@ import android.widget.LinearLayout
  * todo:
  * 1. 完成HORIZONTAL的版本
  * 2. 加上weight
+ *
+ * 疑问：
+ * 1. 这里有个疑问。 Measure的State是什么？
  *
  * Created by Administrator on 2018/4/8 0008.
  */
@@ -64,7 +68,7 @@ class CopyLinearLayout : ViewGroup {
     }
 
     /**
-     * measure方法内最关键的是调用ziview的什么方法呢？
+     * onMeasure方法的意义就在与计算自己的高度和宽度。所以要遍历Child来累计高度。和计算出最大的宽度。
      *
      * 1. 重点1：去确认当前给的mode.如果vertical的话，就看height
      * 2. 重点2：child.measure(childWidthMeasureSpec, childHeightMeasureSpec); 先计算一遍child
@@ -146,6 +150,7 @@ class CopyLinearLayout : ViewGroup {
             alternativeMaxWidth = Math.max(alternativeMaxWidth, tempWidth)
 
         }
+        //遍历之后，就得到了高度和宽度了。这个时候来生成MeasureSpec，设置自己的高宽
 
         //到外面来要加padding
         var heightSize = mTotalLength
