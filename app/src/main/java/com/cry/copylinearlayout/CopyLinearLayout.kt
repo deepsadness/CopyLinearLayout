@@ -37,6 +37,13 @@ import android.widget.LinearLayout
  *      这个childState现在基本没有用处。可能是为了以后留的state
  *
  * 5. 如果有Weight会有什么变化呢
+ *      a. 明确一点。weight的话，需要重新测绘去占据.
+ *      b. 规则是去占用根据weight去占用excessSpace+自身的高度
+ *      c. 完成child的绘制的方式不变。都是去得到 MeasureSpec去传过他
+ *      d. 小技巧是。如果高度是0，就先用wrap去测。而且如果全部是0的情况，也不会导致二度的测绘
+ *      e. resolveSizeAndState 这个方法，可以让当前自己计算和高度和父ViewGroup给的高度，来做协调
+ *          其实是封装了一个对mode判断的方便函数。通过mask可以取到size
+ *      f. getChildMeasureSpec 也是一个方便函数。可以在保持传入的mode的情况下，得到正确的size(这里是用作不关注的那一part)
  *
  *
  * todo:
