@@ -36,6 +36,9 @@ import android.widget.LinearLayout
  *
  *      这个childState现在基本没有用处。可能是为了以后留的state
  *
+ * 5. 如果有Weight会有什么变化呢
+ *
+ *
  * todo:
  * 1. 完成HORIZONTAL的版本
  * 2. 加上weight
@@ -119,6 +122,8 @@ class CopyLinearLayout : ViewGroup {
 
             //得到对应的layoutParams
             val layoutParams = childView.layoutParams as LinearLayout.LayoutParams
+
+            val weight = layoutParams.weight
 
             //得到计算的使用高度
             val usedHeight = mTotalLength
