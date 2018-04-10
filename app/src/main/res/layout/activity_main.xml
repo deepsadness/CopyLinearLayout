@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.cry.copylinearlayout.MainActivity">
 
-    <com.cry.copylinearlayout.CopyLinearLayout
+    <com.cry.copylinearlayout.SimpleLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!" />
-    </com.cry.copylinearlayout.CopyLinearLayout>
+    </com.cry.copylinearlayout.SimpleLinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -24,6 +24,18 @@ import android.widget.LinearLayout
  *      b. 计算最大的高度，是在调用完Child之后添加上
  *
  *
+ * 4. childState 是 宽和高的状态合成一个32位的bit int值
+ *      宽度的状态位在常规的位置
+ *      高度的状态位在偏移后的位置
+ *      我们知道mMeasuredHeight或mMeasuredWidth都是32位的int值,
+ *      但这个值并不是一个表示宽高的实际大小的值,而是一个由宽高的状态和实际大小所组合的值.
+ *      这里的高8位就表示状态(STATE),而低24位表示的是实际的尺寸大小(SIZE)
+ *
+ *      最后得到的结果：
+ *      高8 宽度的State >>8:0 >>8:高度的State >>8:0
+ *
+ *      这个childState现在基本没有用处。可能是为了以后留的state
+ *
  * todo:
  * 1. 完成HORIZONTAL的版本
  * 2. 加上weight
@@ -145,7 +157,7 @@ class CopyLinearLayout : ViewGroup {
             if (matchWidthLocally) {
                 tempWidth = margin
             } else {
-                tempWidth = measuredWidth
+                tempWidth = measureWidth
             }
             alternativeMaxWidth = Math.max(alternativeMaxWidth, tempWidth)
 
