@@ -48,7 +48,6 @@ import android.widget.LinearLayout
  *
  * todo:
  * 1. 完成HORIZONTAL的版本
- * 2. 加上weight
  *
  * 疑问：
  * 1. 这里有个疑问。 Measure的State是什么？
