@@ -13,17 +13,64 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="50dp"
             android:background="@color/colorPrimary"
             android:text="Hello World!" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!" />
+
+        <com.github.florent37.shapeofview.shapes.TriangleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:elevation="4dp"
+
+            app:triangle_percentBottom="0.5"
+            app:triangle_percentLeft="0"
+            app:triangle_percentRight="0">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!" />
+
+            <!-- YOUR CONTENT -->
+
+        </com.github.florent37.shapeofview.shapes.TriangleView>
+
+        <com.github.florent37.shapeofview.shapes.CutCornerView
+            android:id="@+id/clipCorner"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:elevation="4dp"
+            app:cutCorner_bottomRightSize="20dp">
+
+            <!-- YOUR CONTENT -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!" />
+
+        </com.github.florent37.shapeofview.shapes.CutCornerView>
+
+
+        <com.github.florent37.shapeofview.shapes.StarView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:star_noOfPoints="5">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!" />
+
+            <!-- YOUR CONTENT -->
+        </com.github.florent37.shapeofview.shapes.StarView>
     </com.cry.copylinearlayout.SimpleLinearLayout>
 
 

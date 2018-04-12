@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CopyLinearLayout.iml" filepath="$PROJECT_DIR$/CopyLinearLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shapeofview/shapeofview.iml" filepath="$PROJECT_DIR$/shapeofview/shapeofview.iml" />
     </modules>
   </component>
 </project>

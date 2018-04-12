@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import com.github.florent37.shapeofview.ShapeOfView
 
 /**
  *
@@ -19,7 +20,7 @@ import android.view.ViewGroup
 class SimpleLinearLayout : ViewGroup {
     companion object {
         //child的高度和宽度都加上这个
-        const val PADDING_INT = 10/2
+        const val PADDING_INT = 10 / 2
     }
 
     constructor(context: Context) : super(context) {
@@ -40,10 +41,10 @@ class SimpleLinearLayout : ViewGroup {
 
         paint.color = Color.RED
 //        paint.setShadowLayer(10f,2f,2f,Color.RED)
-        paint.maskFilter = BlurMaskFilter(PADDING_INT*3f/2f, BlurMaskFilter.Blur.NORMAL)
+        paint.maskFilter = BlurMaskFilter(PADDING_INT * 3f / 2f, BlurMaskFilter.Blur.NORMAL)
 
         //硬件加速
-        setLayerType(LAYER_TYPE_SOFTWARE,paint)
+        setLayerType(LAYER_TYPE_SOFTWARE, paint)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -51,19 +52,31 @@ class SimpleLinearLayout : ViewGroup {
         //得到每个ziView。在其四周画方框
         for (childIndex in 0 until childCount) {
             val childView = getChildAt(childIndex)
-            val outRect = Rect()
+
+            if (childView is ShapeOfView) {
+                val shapeOfView = childView as ShapeOfView
+                val outLinePath = shapeOfView.outLinePath
+                canvas.save()
+                canvas.translate(shapeOfView.left.toFloat(),shapeOfView.top.toFloat())
+                canvas.drawPath(outLinePath, paint)
+
+                canvas.restore()
+            } else {
+                val outRect = Rect()
 //            outRect.left = childView.left- PADDING_INT
 //            outRect.top = childView.top- PADDING_INT
 //            outRect.right = childView.right+ PADDING_INT
 //            outRect.bottom = childView.bottom+ PADDING_INT
 
-            outRect.left = childView.left
-            outRect.top = childView.top
-            outRect.right = childView.right
-            outRect.bottom = childView.bottom
+                outRect.left = childView.left
+                outRect.top = childView.top
+                outRect.right = childView.right
+                outRect.bottom = childView.bottom
 
 //            childView.getDrawingRect(outRect)
-            canvas.drawRect(outRect, paint)
+                canvas.drawRect(outRect, paint)
+            }
+
         }
     }
 
@@ -327,10 +340,10 @@ class SimpleLinearLayout : ViewGroup {
 
             childTop += lp.topMargin
 
-            childView.layout(childLeft+PADDING_INT, childTop+PADDING_INT, childLeft + childWidth+PADDING_INT, childTop + childHeight)
+            childView.layout(childLeft + PADDING_INT, childTop + PADDING_INT, childLeft + childWidth + PADDING_INT, childTop + childHeight)
 //            childView.layout(childLeft+PADDING_INT, childTop, childLeft + childWidth, childTop + childHeight)
 
-            childTop += lp.bottomMargin + childHeight+PADDING_INT
+            childTop += lp.bottomMargin + childHeight + PADDING_INT
         }
     }
 

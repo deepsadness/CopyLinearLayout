@@ -50,6 +50,7 @@ import android.widget.LinearLayout
  *      2. 计算布局的的地方？，还需要你加上分割线的宽和高
  *      3. 如果需要阴影就关掉硬件加速。
  *      4. idea?各种需要不同形状的阴影布局。是不是可以通过从ChildView中取获取需要勾勒的形状。来进行描绘？？这个想法和ViewOutLineProvider不谋而合？！
+ *          思路：可以通过ShapeOfView来进行集成。就可以做到给任何的形状加上阴影了
  *
  * 7. 额外的问题？OverLayoutCompat是怎么是写的？
  *
