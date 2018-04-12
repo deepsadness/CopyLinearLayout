@@ -1,6 +1,7 @@
 package com.cry.copylinearlayout
 
 import android.content.Context
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +17,55 @@ import android.view.ViewGroup
  * Created by Administrator on 2018/4/10 0010.
  */
 class SimpleLinearLayout : ViewGroup {
-    constructor(context: Context) : super(context) {}
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {}
-    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr) {}
+    companion object {
+        //child的高度和宽度都加上这个
+        const val PADDING_INT = 10/2
+    }
 
+    constructor(context: Context) : super(context) {
+        initDrawPaints(context)
+    }
+
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
+        initDrawPaints(context)
+    }
+
+    constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr) {
+        initDrawPaints(context)
+    }
+
+    var paint = Paint()
+    private fun initDrawPaints(context: Context) {
+        setWillNotDraw(false)
+
+        paint.color = Color.RED
+//        paint.setShadowLayer(10f,2f,2f,Color.RED)
+        paint.maskFilter = BlurMaskFilter(PADDING_INT*3f/2f, BlurMaskFilter.Blur.NORMAL)
+
+        //硬件加速
+        setLayerType(LAYER_TYPE_SOFTWARE,paint)
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        //得到每个ziView。在其四周画方框
+        for (childIndex in 0 until childCount) {
+            val childView = getChildAt(childIndex)
+            val outRect = Rect()
+//            outRect.left = childView.left- PADDING_INT
+//            outRect.top = childView.top- PADDING_INT
+//            outRect.right = childView.right+ PADDING_INT
+//            outRect.bottom = childView.bottom+ PADDING_INT
+
+            outRect.left = childView.left
+            outRect.top = childView.top
+            outRect.right = childView.right
+            outRect.bottom = childView.bottom
+
+//            childView.getDrawingRect(outRect)
+            canvas.drawRect(outRect, paint)
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         measureVertical(widthMeasureSpec, heightMeasureSpec)
@@ -179,10 +225,10 @@ class SimpleLinearLayout : ViewGroup {
                         )
                         val childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec, 0, lp.width)
 
-                        childView.measure(childWidthMeasureSpec,childHeightMeasureSpec)
+                        childView.measure(childWidthMeasureSpec, childHeightMeasureSpec)
 
                         //算出childState.取得是高的state
-                        childState= View.combineMeasuredStates(childState,childView.measuredState and (View.MEASURED_STATE_MASK shr View.MEASURED_HEIGHT_STATE_SHIFT))
+                        childState = View.combineMeasuredStates(childState, childView.measuredState and (View.MEASURED_STATE_MASK shr View.MEASURED_HEIGHT_STATE_SHIFT))
 
                     }
 
@@ -277,11 +323,14 @@ class SimpleLinearLayout : ViewGroup {
             var childHeight = childView.measuredHeight
             var childWidth = childView.measuredWidth
 
+            //这里得加上
+
             childTop += lp.topMargin
 
-            childView.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight)
+            childView.layout(childLeft+PADDING_INT, childTop+PADDING_INT, childLeft + childWidth+PADDING_INT, childTop + childHeight)
+//            childView.layout(childLeft+PADDING_INT, childTop, childLeft + childWidth, childTop + childHeight)
 
-            childTop += lp.bottomMargin + childHeight
+            childTop += lp.bottomMargin + childHeight+PADDING_INT
         }
     }
 

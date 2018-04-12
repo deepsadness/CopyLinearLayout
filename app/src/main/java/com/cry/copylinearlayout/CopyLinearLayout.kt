@@ -45,9 +45,18 @@ import android.widget.LinearLayout
  *          其实是封装了一个对mode判断的方便函数。通过mask可以取到size
  *      f. getChildMeasureSpec 也是一个方便函数。可以在保持传入的mode的情况下，得到正确的size(这里是用作不关注的那一part)
  *
+ * 6. 如何去画分割线？
+ *      1. setWillNotDraw 让viewGroup有绘制的能力
+ *      2. 计算布局的的地方？，还需要你加上分割线的宽和高
+ *      3. 如果需要阴影就关掉硬件加速。
+ *      4. idea?各种需要不同形状的阴影布局。是不是可以通过从ChildView中取获取需要勾勒的形状。来进行描绘？？这个想法和ViewOutLineProvider不谋而合？！
+ *
+ * 7. 额外的问题？OverLayoutCompat是怎么是写的？
  *
  * todo:
+ * 0. 分割线？
  * 1. 完成HORIZONTAL的版本
+ *
  *
  * 疑问：
  * 1. 这里有个疑问。 Measure的State是什么？
