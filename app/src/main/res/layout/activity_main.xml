@@ -74,4 +74,21 @@
     </com.cry.copylinearlayout.SimpleLinearLayout>
 
 
+    <com.cry.copylinearlayout.relative.SimpleDoubleRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是左边" />
+
+        <Button
+            android:text="我是右边"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_toLeftOf="@id/tv_left" />
+
+    </com.cry.copylinearlayout.relative.SimpleDoubleRelativeLayout>
 </FrameLayout>

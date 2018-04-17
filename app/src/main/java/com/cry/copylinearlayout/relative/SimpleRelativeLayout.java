@@ -6,10 +6,19 @@ import android.view.ViewGroup;
 
 /**
  *
+ * 模仿RelativeLayout
+ *
+ * 1. rules
+ * 2. layoutParam
+ * 3. onLayout
+ * 4. onMeasure
  *
  * Created by Administrator on 2018/4/10 0010.
  */
 public class SimpleRelativeLayout extends ViewGroup {
+
+
+
     public SimpleRelativeLayout(Context context) {
         super(context);
     }

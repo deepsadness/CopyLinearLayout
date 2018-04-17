@@ -55,7 +55,6 @@ import android.widget.LinearLayout
  * 7. 额外的问题？OverLayoutCompat是怎么是写的？
  *
  * todo:
- * 0. 分割线？
  * 1. 完成HORIZONTAL的版本
  *
  *

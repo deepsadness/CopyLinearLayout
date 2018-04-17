@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <declare-styleable name="SimpleDoubleRelativeLayout">
+        <attr name="layout_toLeftOf" format="reference" />
+        <attr name="layout_above" format="reference" />
+    </declare-styleable>
 </resources>
